@@ -2,8 +2,14 @@
 
 div.a {
 	text-align: center;
-    
-    height: 1000vh;
+    height: 300vh;
     object-fit: contain;
-    background-color: red;
+    background-image: url("../img/img4.webp");
+    background-repeat:no-repeat;
+    background-position:left top;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+
 }
