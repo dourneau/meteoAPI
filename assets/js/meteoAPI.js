@@ -18,6 +18,31 @@ form.addEventListener('submit', (event) => {
     buildUrl(name);
 });
  
+// Construire l'Url
+const buildUrl = (nom) => {
+    console.log(url1+nom+url3);
+    askMeteo(url1+nom+url3)
+}
+
+function askMeteo(url) {
+    fetch(url)
+    .then(function(response) {
+        if(response.ok) {
+            console.log(response.json);
+            return response.json();
+        }
+    })
+    .then(function(value){
+        return value[0];
+    })
+    .then(function(objet){
+        let urlImage = objet.url;
+        image.setAttribute("src",urlImage);
+    })
+    .catch(function(error){
+        console.log(error);
+    })
+}
 
 
 
