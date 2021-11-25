@@ -2,16 +2,16 @@
 let city = document.querySelector("#city");
 let form = document.querySelector("#form");
 let button = document.querySelector("#button");
+let adress = document.querySelector("#button");
 
 // creation de l'url
-const url1 = "http://api.openweathermap.org/data/2.5/forecast?";
+const url1 = "http://api.openweathermap.org/data/2.5/forecast?q=";
 //const url2 = document.querySelector(Récupérer la ville dans l'input);
 const url3 = "&appid=06a1a61f5da022dda5482cabfeee6442";
 
 // Ecouter les boutons play/pause et pbInput
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log(event);
     console.log(event.target.city.value);
     const name = event.target.city.value;
     console.log(name);
@@ -20,8 +20,9 @@ form.addEventListener('submit', (event) => {
  
 // Construire l'Url
 const buildUrl = (nom) => {
-    console.log(url1+nom+url3);
-    askMeteo(url1+nom+url3)
+    url = url1+nom+url3;
+    console.log(url);
+    askMeteo(url)
 }
 
 function askMeteo(url) {
