@@ -25,6 +25,9 @@ const buildUrl = (nom) => {
     askMeteo(url)
 }
 
+/**
+ * fonction qui va chercher le résultat de la page Météo
+ */
 function askMeteo(url) {
     fetch(url)
         .then(fetchOK,fetchNop)
@@ -33,6 +36,52 @@ function askMeteo(url) {
             console.log(err)
         })
 }
+
+/**
+ * fonction qui traite la reponse du fetch demandé à la météo API si elle est ok
+ * @param {*} reponse 
+ * @returns la reponse au format json
+ */
+ const fetchOK = (reponse) => {
+    return reponse.json();
+}
+
+/**
+ * fonction qui prends en charge la reponse jsonifier de la cat api
+ * @param {*} json 
+ */
+ const trtCatJson = (json) => {
+    console.log(json);
+    let cat = json[0];
+        const img = document.querySelector("img");
+        if (img) {
+            img.src = cat.url;
+        } else {
+            addImg(cat.url);
+        }
+        // tableau pour stocker les races
+        let breeds = [];
+        // on parcours le table de breeds
+        cat.breeds.forEach(breed => {
+            // si l'élement du tableau breeds a la propriété 'name'
+            if (breed.hasOwnProperty('name')) {
+                // j'ajoute le nom de la race au tableau
+                breeds.push(breed.name);
+             }
+        });
+        // Si j'ai au moins une race dans le tableau, je stocke la concaténation du tableau dans title
+        // sinon je stocke "The Cat API"
+        let title = breeds.length > 0 ? breeds.join(' ') : "The Cat API";
+        changeTitle(title); // changement du titre
+}
+/**
+ * fonction qui traite la reponse du fetch demandé à la cat api si elle est pas ok
+ * @param {*} err 
+ */
+ const fetchNop = (err) => {
+    console.log(err);
+}
+
 
 
 
