@@ -29,6 +29,7 @@ const buildUrl = (nom) => {
  * fonction qui va chercher le résultat de la page Météo
  */
 function askMeteo(url) {
+    console.log(url);
     fetch(url)
         .then(fetchOK,fetchNop)
         .then(trtJson)
@@ -43,6 +44,7 @@ function askMeteo(url) {
  * @returns la reponse au format json
  */
  const fetchOK = (reponse) => {
+    console.log(reponse.json);
     return reponse.json();
 }
 
@@ -50,19 +52,13 @@ function askMeteo(url) {
  * fonction qui prends en charge la reponse jsonifier de la cat api
  * @param {*} json 
  */
- const trtCatJson = (json) => {
-    console.log(json);
-    let cat = json[0];
-        const img = document.querySelector("img");
-        if (img) {
-            img.src = cat.url;
-        } else {
-            addImg(cat.url);
-        }
+ const trtJson = (json) => {
+    console.log(json[0]);
+    let tab = json[0];
         // tableau pour stocker les races
         let breeds = [];
         // on parcours le table de breeds
-        cat.breeds.forEach(breed => {
+        tab.breeds.forEach(breed => {
             // si l'élement du tableau breeds a la propriété 'name'
             if (breed.hasOwnProperty('name')) {
                 // j'ajoute le nom de la race au tableau
