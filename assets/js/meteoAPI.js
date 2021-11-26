@@ -73,10 +73,12 @@ function askMeteo(url) {
         // Affichage dans console
         console.log(humanDateFormat);
         // création d'une ligne du tableau
-        let listdate = document.createElement('li');
-
-        listdate.textContent = humanDateFormat;
-        myList.appendChild(listdate);
+        let elementLi = document.createElement('li');
+        myList.appendChild(elementLi);
+        let elementP = document.createElement('p');
+        elementLi.appendChild(elementP);
+        elementP.textContent=humanDateFormat;
+        
     }
 
 
