@@ -54,17 +54,28 @@ function askMeteo(url) {
  */
  const trtJson = (json) => {
     console.log(json);
-
+    // Création d'un tableau
     let myList = document.createElement('ul');
+    // Placement du tableau après le formulaire
     form.after(myList);
-
+    // Le résultat json est une liste d'une seule valeur
     let liste = json['list'];
-    
-    for (let i=0; i<10 ; i++) {
+    // boucle sur le nombre de résultats: toutes les 3h sur 5 jours soit 20 résultats
+    for (let i=0; i<20 ; i++) {
+        // la date (timestamp) du jour est associée au mot "dt"
         let dtemps = liste[0].dt;
-        var listdate = document.createElement('li');
-        console.log(dtemps);
-        listdate.textContent = dtemps;
+        // conversion de dtemps en millisecondes
+        dtemps = dtemps * 1000;
+        // création de la variable date ts
+        let ts = new Date(dtemps);
+        // conversion de la date en JJ/MM/AA +GMT
+        let humanDateFormat = ts.toLocaleString();
+        // Affichage dans console
+        console.log(humanDateFormat);
+        // création d'une ligne du tableau
+        let listdate = document.createElement('li');
+
+        listdate.textContent = humanDateFormat;
         myList.appendChild(listdate);
     }
 
