@@ -53,23 +53,77 @@ function askMeteo(url) {
  * @param {*} json 
  */
  const trtJson = (json) => {
-    console.log(json[0]);
-    let tab = json[0];
-        // tableau pour stocker les races
-        let breeds = [];
-        // on parcours le table de breeds
-        tab.breeds.forEach(breed => {
-            // si l'élement du tableau breeds a la propriété 'name'
-            if (breed.hasOwnProperty('name')) {
-                // j'ajoute le nom de la race au tableau
-                breeds.push(breed.name);
-             }
-        });
-        // Si j'ai au moins une race dans le tableau, je stocke la concaténation du tableau dans title
-        // sinon je stocke "The Cat API"
-        let title = breeds.length > 0 ? breeds.join(' ') : "The Cat API";
-        changeTitle(title); // changement du titre
+    console.log(json);
+    let myList = document.createElement('ul');
+    form.after(myList);
+    let temps = [];
+
+    json.temps.forEach(dtemps => {
+        // si l'élement du tableau temps a la propriété 'dt'
+        if (dt.hasOwnProperty('dt')) {
+            // j'ajoute la date au tableau
+            temps.push(dtemps.dt);
+         }
+    });
+
+
+
+
+    /*
+    for (let i=0; i<tps.length;i++) {
+        var listItem = document.createElement('li');
+        listItem.textContent = tps[i];
+        myList.appendChild(listItem);
+
+    } 
+    */
+
 }
+
+
+
+/*
+function showHeroes(jsonObj) {
+    var heroes = jsonObj['members'];
+  
+    for (var i = 0; i < heroes.length; i++) {
+      var myArticle = document.createElement('article');
+      var myH2 = document.createElement('h2');
+      var myPara1 = document.createElement('p');
+      var myPara2 = document.createElement('p');
+      var myPara3 = document.createElement('p');
+      var myList = document.createElement('ul');
+  
+      myH2.textContent = heroes[i].name;
+      myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+      myPara2.textContent = 'Age: ' + heroes[i].age;
+      myPara3.textContent = 'Superpowers:';
+  
+      var superPowers = heroes[i].powers;
+      for (var j = 0; j < superPowers.length; j++) {
+        var listItem = document.createElement('li');
+        listItem.textContent = superPowers[j];
+        myList.appendChild(listItem);
+      }
+  
+      myArticle.appendChild(myH2);
+      myArticle.appendChild(myPara1);
+      myArticle.appendChild(myPara2);
+      myArticle.appendChild(myPara3);
+      myArticle.appendChild(myList);
+  
+      section.appendChild(myArticle);
+    }
+  }
+
+*/
+
+
+
+
+
+
+
 /**
  * fonction qui traite la reponse du fetch demandé à la cat api si elle est pas ok
  * @param {*} err 
@@ -77,6 +131,15 @@ function askMeteo(url) {
  const fetchNop = (err) => {
     console.log(err);
 }
+
+
+
+
+
+
+
+
+
 
 
 
