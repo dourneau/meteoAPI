@@ -54,19 +54,35 @@ function askMeteo(url) {
  */
  const trtJson = (json) => {
     console.log(json);
+
     let myList = document.createElement('ul');
     form.after(myList);
-    let temps = [];
 
+    let liste = json['list'];
+    
+    for (let i=0; i<10 ; i++) {
+        let dtemps = liste[0].dt;
+        var listdate = document.createElement('li');
+        console.log(dtemps);
+        listdate.textContent = dtemps;
+        myList.appendChild(listdate);
+    }
+
+
+
+
+
+    /*
+    // Tentative avec forEach
     json.temps.forEach(dtemps => {
         // si l'élement du tableau temps a la propriété 'dt'
         if (dt.hasOwnProperty('dt')) {
             // j'ajoute la date au tableau
             temps.push(dtemps.dt);
          }
+         console.log(temps.length);
     });
-
-
+    */
 
 
     /*
